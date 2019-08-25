@@ -54,7 +54,6 @@ class SQLiteConnection {
         foreach ($users as $user) {
             $sql = 'INSERT INTO user (username, password, coin_count) VALUES (:username, :password, :coin_count);';
             $stmt = $this->pdo->prepare($sql);
-            var_dump($stmt);
             $stmt->bindValue(':username', $user["username"]);
             $stmt->bindValue(':password', $user["password"]);
             $stmt->bindValue(':coin_count', $user["coin_count"]);

@@ -19,10 +19,9 @@ echo '</div>';
 
 
 $pdo = (new SQLiteConnection())->connect();
-if ($pdo != null)
-    echo 'Connected to the SQLite database successfully!';
-else
+if ($pdo == null) {
     exit("Could not connect to the SQLite database!");
+}
 
 $users = new Users($pdo);
 
@@ -30,8 +29,13 @@ if ($_SESSION['loggedin'] == true) {
     echo "<p>Welcome, " . $_SESSION['username'] . "!</p>";
 
     // Process transfer, if request present
-    if (isset($_REQUEST['amount']) && isset($REQUEST['target_user'])) {
-        
+    if (isset($_REQUEST['amount']) && isset($_REQUEST['target_id'])) {
+       $user = new User($pdo);
+       $user->lookupByUsername($_SESSION['username']);
+       $targetUser = new User($pdo);
+       $targetUser->lookupById($_REQUEST['target_id']);
+       $user->transferCoins($_REQUEST['amount'], $_REQUEST['target_id']); 
+       echo '<p class="alert">Successfully transferred ' . $_REQUEST['amount'] . ' FooCoins to ' . $targetUser->getUsername() . '.</p>'; 
     }
 
     // Transfer Form
@@ -39,10 +43,10 @@ if ($_SESSION['loggedin'] == true) {
     echo '<form action="index.php" method="POST">';
     echo '<label>Transfer <input type="text" name="amount" size="6"> coins</label>';
     echo ' ';
-    echo '<label>to user <select name="target_user">';
+    echo '<label>to user <select name="target_id">';
     foreach ($users->getUsers() as $item) {
         if ($item['username'] != $_SESSION['username']) {
-            echo '<option>' . $item['username'] . '</option>';
+            echo '<option value="' . $item['id'] . '">' . $item['username'] . '</option>';
         }
     }
     echo '</select></label>';
