@@ -6,6 +6,16 @@ Large portions of this are borrowed from the SQLite-PHP tutorial at http://www.s
 
 ## Running FooCoin
 
+### Docker
+
+If you have Docker installed, this is the easiest way:
+
+    docker build --tag foocoin .
+    docker run -it -p 8000:8000 --rm foocoin
+
+Then visit http://localhost:8000 in your favorite web browser.
+
+### TODO
 First, make sure you have the dependencies installed:
 
 TODO: determine dependencies
