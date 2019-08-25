@@ -15,17 +15,25 @@ If you have Docker installed, this is the easiest way:
 
 Then visit http://localhost:8000 in your favorite web browser.
 
-### TODO
-First, make sure you have the dependencies installed:
+### Running on Linux (Debian flavors)
 
-TODO: determine dependencies
-??? php sqlite3 what all else???
+In this directory (i.e. the same directory as the README.md file on your locally-cloned repo):
+ 
+Make sure you have the dependencies installed:
 
-composer update
-composer dump-autoload -o
+    apt install php7.3-sqlite3
 
-In this directory, run PHP's built-in web server:
+Install Composer. I followed the steps at https://getcomposer.org/download/
+
+Set up the project with Composer:
+
+    php composer.phar update
+    php composer.phar dump-autoload -o
+
+Run PHP's built-in web server:
 
     php -S localhost:8000
 
-Then visit http://localhost:8000 in your favorite web browser. 
+Visit http://localhost:8000/init.php to initialize the SQLite database.
+
+Then visit http://localhost:8000 in your favorite web browser.
