@@ -25,7 +25,7 @@ if ($pdo == null) {
 
 $users = new Users($pdo);
 
-if ($_SESSION['loggedin'] == true) {
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     echo "<p>Welcome, " . $_SESSION['username'] . "!</p>";
 
     // Process transfer, if request present

@@ -4,6 +4,7 @@
         <title>FooCoin - 
             <?php echo $subtitle; ?>
         </title>
+        <link href="foocoin.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <h1>FooCoin - 
