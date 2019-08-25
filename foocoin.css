@@ -3,5 +3,6 @@ h1 { background-color: black; color: white; }
 table { background: black; border:1px solid black; }
 th, td { background: white; padding: .25em .5em; }
 #disclaimer { font-size: x-small; margin-top: 3em; }
+.alert { border: 1px solid #cc9; background-color: #ffc; padding: .25em .5em; }
 .button { float:right; margin-right: 2em; }
 .button a { border: 1px solid #999; background: #ccc; padding: .25em .5em; }

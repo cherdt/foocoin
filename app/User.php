@@ -41,7 +41,9 @@ class User {
     }
 
     public function isValidPassword($password) {
-        return true;
+        #return md5($password) == $this->password;
+        #return true;
+        return $password == $this->password;
     }
 
     public function getUsername() {
