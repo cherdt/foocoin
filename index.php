@@ -58,7 +58,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 echo "<h2>Top FooCoin Users</h2>";
 echo "<table><tr><th>user</th><th>coins</th></tr>";
 foreach ($users->getUsers() as $item) {
-    echo "<tr><td>" . $item['username'] . "</td><td>" . $item['coin_count'] . "</td>";
+    echo "<tr><td><a href=\"profile.php?id=" .$item['id'] . "\">" . $item['username'] . "</a></td><td>" . $item['coin_count'] . "</td>";
 }
 echo "</table>";
 
