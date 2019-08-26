@@ -37,8 +37,32 @@ echo '</div>';
 if ($profileName == 'Unknown User') {
     echo "<p>Either no user was specified, or the specified user does not exist.</p>";
 } else {
+    // If this is the current user's profile, check for status update
+    if ($user->getUsername() == $_SESSION['username']) {
+        if (isset($_REQUEST['status'])) {
+            $user->setStatus($_REQUEST['status']);
+        }
+    }
+
+    // Display the user's status
     echo "<strong>" . $user->getUsername() . "</strong>";
+    echo "<div>Current status message: " . $user->getStatus() . "</div>";
     echo "<div>FooCoin balance: " . $user->getCoinCount() . "</div>";
+
+    // If this is the current user's profile, show status update form
+    if ($user->getUsername() == $_SESSION['username']) {
+        $id = $user->getId();
+        echo <<<"EOD"
+        <h3>Update your status message:</h3>
+        <p>Let people know what you're thinking!</p>
+        <form action="profile.php?id=$id" method="POST">
+            <label>Status: <input type="text" name="status" size="80"></label>
+            <input type="submit" value="Update Status">
+        </form>
+EOD;
+    }
 }
+
+echo '<p><a href="index.php">Back to Main</a></p>';
 
 include("footer.php");

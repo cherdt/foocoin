@@ -18,32 +18,38 @@ class User {
     }
 
     public function lookupById($id) {
-        $stmt = $this->pdo->query('SELECT id, username, password, coin_count
+        $stmt = $this->pdo->query('SELECT id, username, password, status, coin_count
                                     FROM user
                                     WHERE id = ' . $id);
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $this->id = $row['id'];
             $this->username = $row['username'];
             $this->password = $row['password'];
+            $this->status = $row['status'];
             $this->coin_count = $row['coin_count'];
         }
     }
 
     public function lookupByUsername($username) {
-        $sql = "SELECT id, username, password, coin_count FROM user WHERE username = '" . $username . "'";
+        $sql = "SELECT id, username, password, status, coin_count FROM user WHERE username = '" . $username . "'";
         $stmt = $this->pdo->query($sql);
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $this->id = $row['id'];
             $this->username = $row['username'];
             $this->password = $row['password'];
+            $this->status = $row['status'];
             $this->coin_count = $row['coin_count'];
         }
     }
 
     public function isValidPassword($password) {
-        #return md5($password) == $this->password;
         #return true;
-        return $password == $this->password;
+        #return $password == $this->password;
+        return md5($password) == $this->password;
+    }
+
+    public function getId() {
+        return $this->id;
     }
 
     public function getUsername() {
@@ -52,6 +58,17 @@ class User {
 
     public function getCoinCount() {
         return $this->coin_count;
+    }
+
+    public function getStatus() {
+        return $this->status;
+    }
+
+    public function setStatus($status) {
+        $this->status = $status;
+        $sql = 'UPDATE user SET status = \'' . $status . '\' WHERE id = ' . $this->id;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
     }
 
     public function addCoins($n) {
