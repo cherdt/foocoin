@@ -15,7 +15,7 @@ class Users {
     }
 
     public function getUsers() {
-        $sql = 'SELECT id, username, coin_count FROM user ORDER BY coin_count DESC LIMIT 10';
+        $sql = 'SELECT id, username, status, coin_count FROM user ORDER BY coin_count DESC LIMIT 10';
         $stmt = $this->pdo->query($sql);
 
         $this->users = [];
@@ -23,6 +23,7 @@ class Users {
             $this->users[] = [
                 'id' => $row['id'],
                 'username' => $row['username'],
+                'status' => $row['status'],
                 'coin_count' => $row['coin_count']
             ];
         }
