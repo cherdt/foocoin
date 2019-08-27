@@ -10,8 +10,7 @@ Large portions of this are borrowed from the SQLite-PHP tutorial at http://www.s
 
 If you have Docker installed, this is the easiest way:
 
-    docker build --tag foocoin .
-    docker run -it -p 8000:8000 --rm foocoin
+    docker run -it -p 8000:8000 --rm cherdt/foocoin
 
 Then visit http://localhost:8000 in your favorite web browser.
 
@@ -27,8 +26,7 @@ Install Composer. I followed the steps at https://getcomposer.org/download/
 
 Set up the project with Composer:
 
-    php composer.phar update
-    php composer.phar dump-autoload -o
+    ./composer.phar install 
 
 Run PHP's built-in web server:
 
