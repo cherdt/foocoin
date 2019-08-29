@@ -35,3 +35,6 @@ Run PHP's built-in web server:
 Visit http://localhost:8000/init.php to initialize the SQLite database.
 
 Then visit http://localhost:8000 in your favorite web browser.
+
+
+Here is a minor edit
